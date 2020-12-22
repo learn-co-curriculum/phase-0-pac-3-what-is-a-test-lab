@@ -1,20 +1,37 @@
-# Running Tests
+# Testing with JavaScript Lab
 
-You understand how to read tests, now it's time to run the tests. We've made it
-fairly easy. In the same terminal that you used to write `node tests.js` or
-`node index.js` now, you just need to write `learn`. That's it! No matter what
-the lab, our Learn command will figure out where you are and run the appropriate
-tests and give you results.
+## Learning Goals
 
-Speaking of results... let's talk about how to read the results that tests give
-you.
+* Running tests
+* Reading test results
+
+## Running Tests
+
+You understand how to read tests; now it's time to run the tests.
+
+If you haven't already, fork and clone this lesson into your local environment.
+Navigate into its directory in the terminal, then run `code .` to open the files
+in Visual Studio Code. (If you are using a different text editor, the command
+will be different.) Finally, run `npm install` to install the lab's
+dependencies.
+
+> What exactly do we mean by installing dependencies? Open the `package.json` file and scroll down to the bottom. You'll see a list of 'DevDependencies'. What's listed here are JavaScript _packages_: files or sets of files full of existing, reusable code. They are designed to be shared, allowing many developers to use the same code in their own projects. The packages you see listed in `package.json` make it possible to run the lab's tests. In order to use the packages, we have to install them; `npm install` does that for us.
+
+If you take a look at `index.js` and `index-test.js`, you should see the same
+code as in the previous lesson. The only difference is that the test code in
+`index-test.js` is no longer commented out.
+
+**Important**: You should never need to make changes to test files unless a
+lab's instructions specifically tell you to do so.
+
+To run the tests, run `npm test` in the terminal. That's it!
+
+The next step is learning how to read the results that the tests give you.
 
 ## Reading Results of Tests
 
-If we run `learn` in our terminal right now, you'll get a bunch of failed tests.
-It will look something like this:
-
-**Output from running `learn` in Terminal**
+The first time you run `npm test`, you should see something that looks like
+this:
 
 ```bash
 > js-functions-lab@0.1.0 test /Users/mbenton/Desktop/curriculum-team/js-what-is-a-test-lab
@@ -26,11 +43,11 @@ It will look something like this:
     Height
       2) is less than 40
     Message
-      3) gives the name and height
+      ✓ gives the name and height
 
 
-  0 passing (293ms)
-  3 failing
+  1 passing (552ms)
+  2 failing
 
   1) what-is-a-test
        Name
@@ -41,11 +58,11 @@ It will look something like this:
 
       -Joe
       +Susan
-
+      
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toEqual (node_modules/expect/lib/Expectation.js:81:30)
       at Context.<anonymous> (test/index-test.js:6:26)
-      at processImmediate (internal/timers.js:456:21)
+      at processImmediate (internal/timers.js:461:21)
 
   2) what-is-a-test
        Height
@@ -54,36 +71,24 @@ It will look something like this:
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
       at Context.<anonymous> (test/index-test.js:13:28)
-      at processImmediate (internal/timers.js:456:21)
-
-  3) what-is-a-test
-       Message
-         gives the name and height:
-     Error: Expected ' is 74 inches tall' to include 'Joe'
-      at assert (node_modules/expect/lib/assert.js:29:9)
-      at Expectation.toInclude (node_modules/expect/lib/Expectation.js:215:28)
-      at Context.<anonymous> (test/index-test.js:19:29)
-      at processImmediate (internal/timers.js:456:21)
-
-
+      at processImmediate (internal/timers.js:461:21)
 
 npm ERR! Test failed.  See above for more details.
 ```
 
-Let's break this down a bit. If you look at about a third of the way down the
+Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
 
 ```bash
-  0 passing (293ms)
-  3 failing
+  1 passing (552ms)
+  2 failing
 ```
 
-That should be fairly obvious. You passed 0 tests and failed 3 tests. Not a
-great start, but plenty of room for improvement. Let's see how we failed the
-three tests.
+Great! We've already got one test passing! Now let's see how we failed the
+other two tests.
 
 ```bash
-1) what-is-a-test
+  1) what-is-a-test
        Name
          returns "Susan":
 
@@ -92,11 +97,11 @@ three tests.
 
       -Joe
       +Susan
-
+      
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toEqual (node_modules/expect/lib/Expectation.js:81:30)
       at Context.<anonymous> (test/index-test.js:6:26)
-      at processImmediate (internal/timers.js:456:21)
+      at processImmediate (internal/timers.js:461:21)
 
   2) what-is-a-test
        Height
@@ -105,20 +110,12 @@ three tests.
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
       at Context.<anonymous> (test/index-test.js:13:28)
-      at processImmediate (internal/timers.js:456:21)
-
-  3) what-is-a-test
-       Message
-         gives the name and height:
-     Error: Expected ' is 74 inches tall' to include 'Joe'
-      at assert (node_modules/expect/lib/assert.js:29:9)
-      at Expectation.toInclude (node_modules/expect/lib/Expectation.js:215:28)
-      at Context.<anonymous> (test/index-test.js:19:29)
-      at processImmediate (internal/timers.js:456:21)
+      at processImmediate (internal/timers.js:461:21)
 ```
 
-This is all three of the fails. If we break it down even further we can see just
-the test for `name`:
+While there is no hard and fast rule, and there will be exceptions, it is most
+often best to address your test errors in order. So let's take a look at our
+first error:
 
 ```bash
 1) what-is-a-test
@@ -137,25 +134,39 @@ the test for `name`:
       at processImmediate (internal/timers.js:456:21)
 ```
 
-The tests expects `name` to return `"Susan"`. But if you look at the
-`Error: Expected 'Joe' to equal 'Susan'` line you can see that it received `Joe`
-and expected `Susan`. That makes sense! In our `index.js` file we have the
-`name` variable equal `"Joe"`. If you change that line to be equal to `"Susan"`
-and then run the tests again by typing `learn` in the command line you should
-see progress!
+Here is the specific error:
 
 ```bash
-what-is-a-test
+      Error: Expected 'Joe' to equal 'Susan'
+      + expected - actual
+
+      -Joe
+      +Susan
+```
+
+It tells us what the test is expecting (`Expected 'Joe' to equal 'Susan'`) and
+then gives us details about the `expected` and `actual` values. This shows you
+exactly how the value your code is returning (the `actual` value) differs from
+what the test is looking for. Make sure you understand what this is telling you
+&mdash; it will come in handy in later labs!
+
+This error makes sense because we have the `name` variable set equal to "Joe" in
+our `index.js` file. Let's change that line of code to set `name` equal to
+"Susan" instead. Run the tests again by typing `npm test` in the terminal's
+command line, and you should see that we are now passing 2 of the 3 tests!
+
+```bash
+  what-is-a-test
     Name
       ✓ returns "Susan"
     Height
       1) is less than 40
     Message
-      2) gives the name and height
+      ✓ gives the name and height
 
 
-  1 passing (544ms)
-  2 failing
+  2 passing (736ms)
+  1 failing
 
   1) what-is-a-test
        Height
@@ -164,89 +175,82 @@ what-is-a-test
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
       at Context.<anonymous> (test/index-test.js:13:28)
-      at processImmediate (internal/timers.js:456:21)
-
-  2) what-is-a-test
-       Message
-         gives the name and height:
-     Error: Expected ' is 74 inches tall' to include 'Susan'
-      at assert (node_modules/expect/lib/assert.js:29:9)
-      at Expectation.toInclude (node_modules/expect/lib/Expectation.js:215:28)
-      at Context.<anonymous> (test/index-test.js:19:29)
-      at processImmediate (internal/timers.js:456:21)
+      at processImmediate (internal/timers.js:461:21)
 ```
 
-Woot! You passed one. Now you can go ahead and try and pass all of the other
-tests on your own.
+Woot! You passed another one. Now go ahead and try to pass the remaining test on
+your own.
 
 ### Common Errors
 
 While you are solving the other tests you may come across a few errors. Let's go
 over some common ones:
 
-#### Expected Undefined
+#### Variable Not Defined
 
 ```bash
-Error: Expected undefined to equal 'Susan'
+ReferenceError: name is not defined
 ```
 
-That one says that it expected `undefined` to equal Susan. That makes no sense!
-You didn't set the `name` variable to `undefined`. Why does it think that `name`
-is equal to `undefined`? What that actually means is that the test couldn't find
-the variable `name`. This can happen if you by accident rename the variable.
-Taking a look at `index.js` I made this mistake: `var nae = "Susan"`. Whoops! If
-I change that back to `name` everything works. :)
+That one says that the `name` variable is not defined. That makes no sense! We
+initialized the `name` variable in `index.js`! What that actually means is that
+the test couldn't find the variable `name`. You'll get this error if the name of
+one of your variables is different than the test is expecting. Check to make
+sure you used the correct variable names and look carefully for typos.
 
 #### Unexpected Identifier
 
 ```bash
-/Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/index.js:2
-vr name = "Susan"
-   ^^^^
+/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/index.js:1
+cnst name = "Susan";
+     ^^^^
+
 SyntaxError: Unexpected identifier
-    at createScript (vm.js:56:10)
-    at Object.runInThisContext (vm.js:97:10)
-    at Module._compile (module.js:542:28)
-    at Object.Module._extensions..js (module.js:579:10)
-    at Module.load (module.js:487:32)
-    at tryModuleLoad (module.js:446:12)
-    at Function.Module._load (module.js:438:3)
-    at Module.require (module.js:497:17)
-    at require (internal/module.js:20:19)
-    at Object.<anonymous> (/Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/test/index-test.js:1:75)
-    at Module._compile (module.js:570:32)
-    at Object.Module._extensions..js (module.js:579:10)
-    at Module.load (module.js:487:32)
-    at tryModuleLoad (module.js:446:12)
-    at Function.Module._load (module.js:438:3)
-    at Module.require (module.js:497:17)
-    at require (internal/module.js:20:19)
-    at /Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:220:27
-    at Array.forEach (native)
-    at Mocha.loadFiles (/Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:217:14)
-    at Mocha.run (/Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:469:10)
-    at Object.<anonymous> (/Users/joe/Documents/Documents/flatiron/js-what-is-a-test-lab/node_modules/mocha/bin/_mocha:404:18)
-    at Module._compile (module.js:570:32)
-    at Object.Module._extensions..js (module.js:579:10)
-    at Module.load (module.js:487:32)
-    at tryModuleLoad (module.js:446:12)
-    at Function.Module._load (module.js:438:3)
-    at Module.runMain (module.js:604:10)
-    at run (bootstrap_node.js:393:7)
-    at startup (bootstrap_node.js:150:9)
-    at bootstrap_node.js:508:3
+    at wrapSafe (internal/modules/cjs/loader.js:979:16)
+    at Module._compile (internal/modules/cjs/loader.js:1027:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at Object.<anonymous> (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/test/index-test.js:1:15)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Module.require (internal/modules/cjs/loader.js:952:19)
+    at require (internal/modules/cjs/helpers.js:88:18)
+    at /Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:311:36
+    at Array.forEach (<anonymous>)
+    at Mocha.loadFiles (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:308:14)
+    at Mocha.run (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:849:10)
+    at Object.exports.singleRun (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:108:16)
+    at exports.runMocha (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:143:13)
+    at Object.exports.handler (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run.js:305:3)
+    at Object.runCommand (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/lib/command.js:242:26)
+    at Object.parseArgs [as _parseArgs] (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:1104:24)
+    at Object.parse (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:566:25)
+    at Object.exports.main (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/cli.js:68:6)
+    at Object.<anonymous> (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/bin/mocha:133:29)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+    at internal/main/run_main_module.js:17:47
+npm ERR! Test failed.  See above for more details.
 ```
 
-Woah! So many words that make no sense. Don't worry though. The most important
+Whoa! So many words that make no sense. Don't worry though. The most important
 line is the `SyntaxError: Unexpected identifier` line. What that means is you
-have some sort of typo or syntax mistake, It could be a HUGE variety of things
-but usually, JS will try and give you a hint. This time it's pointing to the `vr
-name = "Susan"` line of code. Take a look and read _very carefully_. I
-misspelled `var`. Whoops! If you fix that everything will work.
+have some sort of typo or syntax mistake. It could be a HUGE variety of things
+but usually, JS will try and give you a hint. This time it's pointing to the
+`cnst name = "Susan"` line of code. Take a look and read _very carefully_:
+`const` is misspelled. Whoops! Once we fix that everything will work.
 
 One note on this type of error is that it is sort of a catch-all. Tons and tons
 of problems end in that sort of error message. Whenever you see it, be sure to
-read over your code with a fine toothed comb...and you'll find the problem!
+read over your code with a fine-toothed comb... and you'll find the problem!
 
 ## Type Errors
 
@@ -263,7 +267,9 @@ On the second test, there is a chance you might see the following error:
       at processImmediate (internal/timers.js:456:21)
 ```
 
-This error is slightly different than the last two. In this case, the test is giving us a unique message because it recognizes a problem. If we look at this test in `test/index-test.js`, we see this:
+This error is slightly different than the last two. In this case, the test is
+giving us a unique message because it recognizes a problem. If we look at this
+test in `test/index-test.js`, we see this:
 
 ```js
   describe('Height', () => {
@@ -273,14 +279,14 @@ This error is slightly different than the last two. In this case, the test is gi
   })
 ```
 
-The word `"actual"` is no where to be found - `index.height` is what is being
-tested. The test expects `index.height` to be less than `40`. The error message
-is telling us that `index.height` **must be a number**. If you're seeing this,
-make sure that you have set `index.height` to be equal to the **number** `40`,
-not the **string** `"40"`. Ruby will interpret the value as a string due to the
-quotation marks wrapping it.
+We can see that the word `"actual"` in this case is referring to the
+`index.height` variable. The error message is telling us that `index.height`
+**must be a number**. If you're seeing this, make sure that you have set the
+`height` variable equal to the **number** `40`, not the **string** `"40"`. The
+test will interpret the value as a string due to the quotation marks wrapping
+it.
 
 ## Conclusion
 
-Once you have all three tests passing, run `learn submit` to register completion. Congratulations, you've solved your first tests! On to many more!
-
+Once you've got all your tests passing, you're ready to move on.
+Congratulations! You've solved your first JavaScript tests!
