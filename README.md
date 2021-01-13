@@ -286,6 +286,22 @@ We can see that the word `"actual"` in this case is referring to the
 test will interpret the value as a string due to the quotation marks wrapping
 it.
 
+## Saving Your Work Remotely
+
+Currently, the work you've done on this assignmnent is only on your local
+machine. To preserve work on your GitHub fork, you will need to stage the
+changes you've made, commit them, and push the commit up to GitHub. Use
+the following commands to do this:
+
+```sh
+git add .
+git commit -m "Completed assignment"
+git push
+```
+
+If you visit your fork on GitHub, you should now see that _you've_ made the most
+recent commit, and your solution will be present in the files.
+
 ## Conclusion
 
 Once you've got all your tests passing, you're ready to move on.
