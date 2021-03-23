@@ -282,9 +282,9 @@ test in `test/index-test.js`, we see this:
 We can see that the word `"actual"` in this case is referring to the
 `index.height` variable. The error message is telling us that `index.height`
 **must be a number**. If you're seeing this, make sure that you have set the
-`height` variable to less than the **number** `40`, not the **string** `"40"`. The
-test will interpret the value as a string due to the quotation marks wrapping
-it.
+`height` variable to a **number** that's less than 40 (e.g. `39`), not a
+**string** (`"39"`). The test will interpret the value as a string due to the
+quotation marks wrapping it.
 
 ## Saving Your Work Remotely
 
