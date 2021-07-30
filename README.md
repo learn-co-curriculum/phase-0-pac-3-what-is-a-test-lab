@@ -148,7 +148,7 @@ It tells us what the test is expecting (`Expected 'Joe' to equal 'Susan'`) and
 then gives us details about the `expected` and `actual` values. This shows you
 exactly how the value your code is returning (the `actual` value) differs from
 what the test is looking for. Make sure you understand what this is telling you
-&mdash; it will come in handy in later labs!
+— it will come in handy in later labs!
 
 This error makes sense because we have the `name` variable set equal to "Joe" in
 our `index.js` file. Let's change that line of code to set `name` equal to
