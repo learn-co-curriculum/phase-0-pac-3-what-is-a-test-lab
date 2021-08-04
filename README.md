@@ -2,8 +2,8 @@
 
 ## Learning Goals
 
-* Running tests
-* Reading test results
+- Running tests
+- Reading test results
 
 ## Running Tests
 
@@ -15,7 +15,13 @@ in Visual Studio Code. (If you are using a different text editor, the command
 will be different.) Finally, run `npm install` to install the lab's
 dependencies.
 
-> What exactly do we mean by installing dependencies? Open the `package.json` file and scroll down to the bottom. You'll see a list of 'DevDependencies'. What's listed here are JavaScript _packages_: files or sets of files full of existing, reusable code. They are designed to be shared, allowing many developers to use the same code in their own projects. The packages you see listed in `package.json` make it possible to run the lab's tests. In order to use the packages, we have to install them; `npm install` does that for us.
+> What exactly do we mean by installing dependencies? Open the `package.json`
+> file and scroll down to the bottom. You'll see a list of 'DevDependencies'.
+> What's listed here are JavaScript _packages_: files or sets of files full of
+> existing, reusable code. They are designed to be shared, allowing many
+> developers to use the same code in their own projects. The packages you see
+> listed in `package.json` make it possible to run the lab's tests. In order to
+> use the packages, we have to install them; `npm install` does that for us.
 
 If you take a look at `index.js` and `index-test.js`, you should see the same
 code as in the previous lesson. The only difference is that the test code in
@@ -33,7 +39,7 @@ The next step is learning how to read the results that the tests give you.
 The first time you run `npm test`, you should see something that looks like
 this:
 
-```bash
+```txt
 > js-functions-lab@0.1.0 test /Users/mbenton/Desktop/curriculum-team/js-what-is-a-test-lab
 > mocha -R mocha-multi --reporter-options spec=-,json=.results.json
 
@@ -58,7 +64,7 @@ this:
 
       -Joe
       +Susan
-      
+
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toEqual (node_modules/expect/lib/Expectation.js:81:30)
       at Context.<anonymous> (test/index-test.js:6:26)
@@ -79,7 +85,7 @@ npm ERR! Test failed.  See above for more details.
 Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
 
-```bash
+```txt
   1 passing (552ms)
   2 failing
 ```
@@ -87,7 +93,7 @@ output, you'll see a summary of how the tests went:
 Great! We've already got one test passing! Now let's see how we failed the
 other two tests.
 
-```bash
+```txt
   1) what-is-a-test
        Name
          returns "Susan":
@@ -97,7 +103,7 @@ other two tests.
 
       -Joe
       +Susan
-      
+
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toEqual (node_modules/expect/lib/Expectation.js:81:30)
       at Context.<anonymous> (test/index-test.js:6:26)
@@ -117,7 +123,7 @@ While there is no hard and fast rule, and there will be exceptions, it is most
 often best to address your test errors in order. So let's take a look at our
 first error:
 
-```bash
+```txt
 1) what-is-a-test
        Name
          returns "Susan":
@@ -136,7 +142,7 @@ first error:
 
 Here is the specific error:
 
-```bash
+```txt
       Error: Expected 'Joe' to equal 'Susan'
       + expected - actual
 
@@ -155,7 +161,7 @@ our `index.js` file. Let's change that line of code to set `name` equal to
 "Susan" instead. Run the tests again by typing `npm test` in the terminal's
 command line, and you should see that we are now passing 2 of the 3 tests!
 
-```bash
+```txt
   what-is-a-test
     Name
       ✓ returns "Susan"
@@ -188,7 +194,7 @@ over some common ones:
 
 #### Variable Not Defined
 
-```bash
+```txt
 ReferenceError: name is not defined
 ```
 
@@ -200,7 +206,7 @@ sure you used the correct variable names and look carefully for typos.
 
 #### Unexpected Identifier
 
-```bash
+```txt
 /Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/index.js:1
 cnst name = "Susan";
      ^^^^
@@ -256,7 +262,7 @@ read over your code with a fine-toothed comb... and you'll find the problem!
 
 On the second test, there is a chance you might see the following error:
 
-```bash
+```txt
 1) what-is-a-test
        Height
          is less than 40:
@@ -272,15 +278,15 @@ giving us a unique message because it recognizes a problem. If we look at this
 test in `test/index-test.js`, we see this:
 
 ```js
-  describe('Height', () => {
-    it('is less than 40', () => {
-      expect(index.height).toBeLessThan(40)
-    })
-  })
+describe("Height", () => {
+  it("is less than 40", () => {
+    expect(height).toBeLessThan(40);
+  });
+});
 ```
 
 We can see that the word `"actual"` in this case is referring to the
-`index.height` variable. The error message is telling us that `index.height`
+`height` variable. The error message is telling us that `height`
 **must be a number**. If you're seeing this, make sure that you have set the
 `height` variable to a **number** that's less than 40 (e.g. `39`), not a
 **string** (`"39"`). The test will interpret the value as a string due to the
