@@ -292,6 +292,32 @@ We can see that the word `"actual"` in this case is referring to the
 **string** (`"39"`). The test will interpret the value as a string due to the
 quotation marks wrapping it.
 
+## Optional Mocha Configuration
+
+In this lab, we only had three tests to pass, but as you continue through the
+curriculum you will encounter labs with many more tests. You can imagine that
+the test output could get very long, making it more difficult to focus in on how
+to fix a particular error.
+
+To help with this issue, there is some very simple setup you can put in place in
+Mocha that will cause the tests to stop as soon as the first failing test is
+encountered.
+
+To implement this, first create a new file, `mocha.opts`, in the `test`
+directory:
+
+```sh
+touch test/mocha.opts
+```
+
+Then open the file in your text editor and add the following:
+
+```text
+--bail
+```
+
+That's it!
+
 ## Saving Your Work Remotely
 
 Currently, the work you've done on this assignment is only on your local
