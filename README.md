@@ -1,19 +1,171 @@
-# Testing with JavaScript Lab
+# Testing With Javascript Lab
 
 ## Learning Goals
 
-- Running tests
-- Reading test results
+- Learn about testing in JavaScript
+- Run JavaScript tests
+- Learn how to read test results
 
-## Running Tests
+## Introduction
 
-You understand how to read tests; now it's time to run the tests.
+Many of the labs you will complete in this program use tests. Passing the tests
+verifies that the code you write behaves as desired and produces the expected
+results. But writing tests is also a way to provide specifics about exactly how
+the code should function. In a common development strategy known as [test-driven
+development][tdd] (or TDD), programmers _first_ write the test for a specific
+function of the code _then_ write the code to make the tests pass. TDD is
+considered the most reliable methodology for delivering quality code.
+
+What this means is that the results of running the tests will be an important
+tool in figuring out how to get those tests passing. Code testing can feel like
+an abstract concept at first, but it's worth starting to learn how they work.
+When you're having difficulty passing a test, being able to read and understand
+the test output — and the tests themselves — can be an invaluable skill.
+
+## Getting Started
 
 If you haven't already, fork and clone this lesson into your local environment.
 Navigate into its directory in the terminal, then run `code .` to open the files
 in Visual Studio Code. (If you are using a different text editor, the command
-will be different.) Finally, run `npm install` to install the lab's
-dependencies.
+will be different.)
+
+Open up `index.js` in your code editor. You are going to see mostly familiar
+things:
+
+```javascript
+const name = "Joe";
+const height = 74;
+const message = `${name} is ${height} inches tall`;
+
+module.exports = { name, height, message };
+```
+
+This should all look familiar except for that last line. You don't need to worry
+about it for now — just know that line of code makes the variables available to
+the test file.
+
+Take a look at the `message` variable:
+
+```js
+const message = `${name} is ${height} inches tall`;
+```
+
+We can use `console.log` to take a look at the value of the `message` variable.
+To do that, first type `console.log(message);` on the last line of `index.js`
+and save the file. Next, navigate to the terminal, and type the following
+command in the command line and hit enter (be sure you're still in the lab's
+directory):
+
+```console
+$ node index.js
+```
+
+The `node` command _executes_ the code in whatever file you specify (in this
+case, `index.js`). You should see `"Joe is 74 inches tall"` logged in the
+terminal.
+
+> **Top Tip**: `console.log` is one of the debugging tools you can use as you're
+> writing your code. Logging a variable and executing the code will allow you to
+> verify that the value of the variable is what you're expecting.
+
+In the line of code above, we are using _string interpolation_ to inject the
+values of the `name` and `height` variables into the message. Recall that, for
+this to work, you have to wrap the entire string in backticks and wrap the
+variables themselves in `${}`. If you'd like a refresher, try leaving out the
+`${}`s or switching to a different type of quotes and run your code again to see
+what the value of `message` is. The backticks and the `${}` tell Javascript to
+grab the _value_ inside the variable, not just that variable name.
+
+### The Tests
+
+We have our code, now let's take a look at the tests. They are located in the
+`test` folder inside a file named `index-test.js`.
+
+```javascript
+const { name, height, message } = require("../index.js");
+
+describe('what-is-a-test', () => {
+  describe('Name', () => {
+    it('returns "Susan"', () => {
+      expect(name).toEqual('Susan')
+    })
+  })
+
+
+  describe('Height', () => {
+    it('is less than 40', () => {
+      expect(height).toBeLessThan(40)
+    })
+  })
+
+  describe('Message', () => {
+    it('gives the name and height', () => {
+      expect(message).toInclude(name)
+      expect(message).toInclude(height)
+    })
+  })
+})
+```
+
+**Important**: You should never need to make changes to test files unless a
+lab's instructions specifically tell you to do so.
+
+In the first line, we're enabling the tests to access the variables in
+`index.js`. You don't need to worry about exactly how this works at this point —
+just know that the `module.exports` and `require` keywords allow us to access
+variables written in the `index.js` file from within the test file.
+
+Next, note that the test code consists of three individual tests (each starting
+with `describe`) nested inside a block for the tests as a whole (also starting
+with `describe`).
+
+The first grouping is testing our `name` variable:
+
+```javascript
+describe("Name", () => {
+  it('returns "Susan"', () => {
+    expect(name).toEqual("Susan");
+  });
+});
+```
+
+Take a look at the line that begins with `expect`. If we read it out loud, we
+get "Expect `name` to equal Susan". That's exactly what it's saying! If we
+continue down to the Height section you'll see this code:
+
+```javascript
+describe("Height", () => {
+  it("is less than 40", () => {
+    expect(height).toBeLessThan(40);
+  });
+});
+```
+
+Again, reading the line starting with `expect` out loud, we get "Expect `height`
+to be less than 40." Again, this is just what the test is checking. Let's look
+at the final one:
+
+```javascript
+describe("Message", () => {
+  it("gives the name and height", () => {
+    expect(message).toInclude(name);
+    expect(message).toInclude(height);
+  });
+});
+```
+
+This one has two `expect` statements. If you read them out as English you'll
+discover that the tests expect the value of `index.message` to include both
+`index.name` and `index.height`.
+
+OK great. Now that you understand what the tests are saying, it's time to run
+them.
+
+## Running Tests
+
+To run the tests, make sure you're inside the lab's directory in the terminal,
+then run `learn test`. Recall that this command first installs the lab's
+dependencies, then shows the results of running the tests.
 
 > What exactly do we mean by installing dependencies? Open the `package.json`
 > file and scroll down to the bottom. You'll see a list of 'DevDependencies'.
@@ -23,20 +175,11 @@ dependencies.
 > listed in `package.json` make it possible to run the lab's tests. In order to
 > use the packages, we have to install them; `npm install` does that for us.
 
-If you take a look at `index.js` and `index-test.js`, you should see the same
-code as in the previous lesson. The only difference is that the test code in
-`index-test.js` is no longer commented out.
-
-**Important**: You should never need to make changes to test files unless a
-lab's instructions specifically tell you to do so.
-
-To run the tests, run `npm test` in the terminal. That's it!
-
 The next step is learning how to read the results that the tests give you.
 
 ## Reading Results of Tests
 
-The first time you run `npm test`, you should see something that looks like
+The first time you run `learn test`, you should see something that looks like
 this:
 
 ```txt
@@ -158,7 +301,7 @@ what the test is looking for. Make sure you understand what this is telling you
 
 This error makes sense because we have the `name` variable set equal to "Joe" in
 our `index.js` file. Let's change that line of code to set `name` equal to
-"Susan" instead. Run the tests again by typing `npm test` in the terminal's
+"Susan" instead. Run the tests again by typing `learn test` in the terminal's
 command line, and you should see that we are now passing 2 of the 3 tests!
 
 ```txt
@@ -291,22 +434,6 @@ We can see that the word `"actual"` in this case is referring to the
 `height` variable to a **number** that's less than 40 (e.g. `39`), not a
 **string** (`"39"`). The test will interpret the value as a string due to the
 quotation marks wrapping it.
-
-## Saving Your Work Remotely
-
-Currently, the work you've done on this assignment is only on your local
-machine. To preserve work on your GitHub fork, you will need to stage the
-changes you've made, commit them, and push the commit up to GitHub. Use
-the following commands to do this:
-
-```console
-$ git add .
-$ git commit -m "Completed assignment"
-$ git push
-```
-
-If you visit your fork on GitHub, you should now see that _you've_ made the most
-recent commit, and your solution will be present in the files.
 
 ## Conclusion
 
