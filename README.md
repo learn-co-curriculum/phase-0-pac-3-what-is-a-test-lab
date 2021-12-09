@@ -34,6 +34,7 @@ clone it to your local environment.
 **1.** click the **Fork** icon in the upper right of this page. This will bring you
    to GitHub. If you are prompted to choose where to fork, choose your personal
    GitHub account.
+
 **2.** Once your fork is created, click the **Code** button in GitHub, make sure
    **SSH** is selected, and copy the provided git URL info.
 
