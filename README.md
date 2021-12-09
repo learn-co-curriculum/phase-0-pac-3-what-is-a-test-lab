@@ -16,6 +16,8 @@ development][tdd] (or TDD), programmers _first_ write the test for a specific
 function of the code _then_ write the code to make the tests pass. TDD is
 considered the most reliable methodology for delivering quality code.
 
+[tdd]: https://en.wikipedia.org/wiki/Test-driven_development
+
 What this means is that the results of running the tests will be an important
 tool in figuring out how to get those tests passing. Code testing can feel like
 an abstract concept at first, but it's worth starting to learn how they work.
@@ -24,10 +26,38 @@ the test output — and the tests themselves — can be an invaluable skill.
 
 ## Getting Started
 
-If you haven't already, fork and clone this lesson into your local environment.
-Navigate into its directory in the terminal, then run `code .` to open the files
-in Visual Studio Code. (If you are using a different text editor, the command
-will be different.)
+The lesson is set up as an assignment (lab), so you'll first need to fork and
+clone it to your local environment.
+
+**Quick Review:**
+
+**1.** click the **Fork** icon in the upper right of this page. This will bring you
+   to GitHub. If you are prompted to choose where to fork, choose your personal
+   GitHub account.
+**2.** Once your fork is created, click the **Code** button in GitHub, make sure
+   **SSH** is selected, and copy the provided git URL info.
+
+![clone-repo](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments/clone-repo.gif)
+
+Then, in your terminal:
+
+**3.** Make sure you're in `Development/code` (or wherever you're storing your
+code for the course) and clone the repo to your local machine with `git clone`
+followed by the git URL you copied.
+
+```console
+$ git clone git@github.com:<your-github-username>/phase-0-html-experiencing-html-lab.git
+```
+
+**4.** The previous command will create a folder in the location you're
+currently in containing your fork of this lab's repository. `cd` into the
+repository that you just cloned down in the terminal, then run `code .` to open
+the files in Visual Studio Code.
+
+```console
+$ cd phase-0-pac-3-what-is-a-test-lab.git
+$ code .
+```
 
 Open up `index.js` in your code editor. You are going to see mostly familiar
 things:
@@ -75,6 +105,8 @@ variables themselves in `${}`. If you'd like a refresher, try leaving out the
 `${}`s or switching to a different type of quotes and run your code again to see
 what the value of `message` is. The backticks and the `${}` tell Javascript to
 grab the _value_ inside the variable, not just that variable name.
+
+Go ahead and delete the `console.log` from `index.js` before moving on.
 
 ### The Tests
 
@@ -173,7 +205,9 @@ dependencies, then shows the results of running the tests.
 > existing, reusable code. They are designed to be shared, allowing many
 > developers to use the same code in their own projects. The packages you see
 > listed in `package.json` make it possible to run the lab's tests. In order to
-> use the packages, we have to install them; `npm install` does that for us.
+> use the packages, we have to install them. One of the things `learn test` does
+> for us is run `npm install`, which is the command that installs the
+> dependencies.
 
 The next step is learning how to read the results that the tests give you.
 
@@ -182,9 +216,10 @@ The next step is learning how to read the results that the tests give you.
 The first time you run `learn test`, you should see something that looks like
 this:
 
-```txt
-> js-functions-lab@0.1.0 test /Users/mbenton/Desktop/curriculum-team/js-what-is-a-test-lab
-> mocha -R mocha-multi --reporter-options spec=-,json=.results.json
+```console
+> js-functions-lab@0.1.0 test
+> mocha --timeout 5000 --reporter 'json' > .results.json & mocha
+
 
   what-is-a-test
     Name
@@ -224,6 +259,11 @@ this:
 
 npm ERR! Test failed.  See above for more details.
 ```
+
+> **Note**: If you also get an error that ends with "unexpected character (after
+> ) at line 1, column 1 [parse.c:769] (Oj::ParseError)", go back to the
+> `index.js` file and remove the `console.log` we added earlier, then run `learn
+> test` again.
 
 Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
@@ -350,7 +390,7 @@ sure you used the correct variable names and look carefully for typos.
 #### Unexpected Identifier
 
 ```txt
-/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/index.js:1
+/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/index.js:1
 cnst name = "Susan";
      ^^^^
 
@@ -362,25 +402,25 @@ SyntaxError: Unexpected identifier
     at Function.Module._load (internal/modules/cjs/loader.js:769:14)
     at Module.require (internal/modules/cjs/loader.js:952:19)
     at require (internal/modules/cjs/helpers.js:88:18)
-    at Object.<anonymous> (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/test/index-test.js:1:15)
+    at Object.<anonymous> (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/test/index-test.js:1:15)
     at Module._compile (internal/modules/cjs/loader.js:1063:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
     at Module.load (internal/modules/cjs/loader.js:928:32)
     at Function.Module._load (internal/modules/cjs/loader.js:769:14)
     at Module.require (internal/modules/cjs/loader.js:952:19)
     at require (internal/modules/cjs/helpers.js:88:18)
-    at /Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:311:36
+    at /Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:311:36
     at Array.forEach (<anonymous>)
-    at Mocha.loadFiles (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:308:14)
-    at Mocha.run (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:849:10)
-    at Object.exports.singleRun (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:108:16)
-    at exports.runMocha (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:143:13)
-    at Object.exports.handler (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run.js:305:3)
-    at Object.runCommand (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/lib/command.js:242:26)
-    at Object.parseArgs [as _parseArgs] (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:1104:24)
-    at Object.parse (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:566:25)
-    at Object.exports.main (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/cli.js:68:6)
-    at Object.<anonymous> (/Users/lizburton_fs/Development/code/curriculum/flip/pac3/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/bin/mocha:133:29)
+    at Mocha.loadFiles (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:308:14)
+    at Mocha.run (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/mocha.js:849:10)
+    at Object.exports.singleRun (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:108:16)
+    at exports.runMocha (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run-helpers.js:143:13)
+    at Object.exports.handler (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/run.js:305:3)
+    at Object.runCommand (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/lib/command.js:242:26)
+    at Object.parseArgs [as _parseArgs] (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:1104:24)
+    at Object.parse (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/yargs/yargs.js:566:25)
+    at Object.exports.main (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/lib/cli/cli.js:68:6)
+    at Object.<anonymous> (/Users/lizburton_fs/Development/code/phase-0-pac-3-what-is-a-test-lab/node_modules/mocha/bin/mocha:133:29)
     at Module._compile (internal/modules/cjs/loader.js:1063:30)
     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
     at Module.load (internal/modules/cjs/loader.js:928:32)
