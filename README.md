@@ -303,17 +303,19 @@ To help with this issue, there is some very simple setup you can put in place in
 Mocha that will cause the tests to stop as soon as the first failing test is
 encountered.
 
-To implement this, first create a new file, `mocha.opts`, in the `test`
-directory:
+To implement this, open up the `package.json` file and find the test script. It
+should look something like this:
 
-```sh
-touch test/mocha.opts
+```json
+  "scripts": {
+    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha"
+  },
 ```
 
-Then open the file in your text editor and add the following:
+Add the `--bail` flag to the end of the line, inside the quotes:
 
-```text
---bail
+```json
+    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha --bail"
 ```
 
 That's it!
