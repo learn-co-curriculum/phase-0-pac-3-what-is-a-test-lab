@@ -476,6 +476,34 @@ We can see that the word `"actual"` in this case is referring to the
 **string** (`"39"`). The test will interpret the value as a string due to the
 quotation marks wrapping it.
 
+## Optional Mocha Configuration
+
+In this lab, we only had three tests to pass, but as you continue through the
+curriculum you will encounter labs with many more tests. You can imagine that
+the test output could get very long, making it more difficult to focus in on how
+to fix a particular error.
+
+To help with this issue, there is some very simple setup you can put in place in
+Mocha that will cause the tests to stop as soon as the first failing test is
+encountered.
+
+To implement this, open up the `package.json` file and find the test script. It
+should look something like this:
+
+```json
+  "scripts": {
+    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha"
+  },
+```
+
+Add the `--bail` flag to the end of the line, inside the quotes:
+
+```json
+    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha --bail"
+```
+
+That's it!
+
 ## Conclusion
 
 Once you've got all your tests passing, you're ready to move on.
