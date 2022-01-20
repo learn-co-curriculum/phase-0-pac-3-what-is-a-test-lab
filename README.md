@@ -31,12 +31,12 @@ clone it to your local environment.
 
 **Quick Review:**
 
-**1.** click the **Fork** icon in the upper right of this page. This will bring you
-   to GitHub. If you are prompted to choose where to fork, choose your personal
-   GitHub account.
+**1.** click the **Fork** icon in the upper right of this page. This will bring
+you to GitHub. If you are prompted to choose where to fork, choose your personal
+GitHub account.
 
 **2.** Once your fork is created, click the **Code** button in GitHub, make sure
-   **SSH** is selected, and copy the provided git URL info.
+**SSH** is selected, and copy the provided git URL info.
 
 ![clone-repo](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments/clone-repo.gif)
 
@@ -117,27 +117,26 @@ We have our code, now let's take a look at the tests. They are located in the
 ```javascript
 const { name, height, message } = require("../index.js");
 
-describe('what-is-a-test', () => {
-  describe('Name', () => {
+describe("what-is-a-test", () => {
+  describe("Name", () => {
     it('returns "Susan"', () => {
-      expect(name).toEqual('Susan')
-    })
-  })
+      expect(name).toEqual("Susan");
+    });
+  });
 
+  describe("Height", () => {
+    it("is less than 40", () => {
+      expect(height).toBeLessThan(40);
+    });
+  });
 
-  describe('Height', () => {
-    it('is less than 40', () => {
-      expect(height).toBeLessThan(40)
-    })
-  })
-
-  describe('Message', () => {
-    it('gives the name and height', () => {
-      expect(message).toInclude(name)
-      expect(message).toInclude(height)
-    })
-  })
-})
+  describe("Message", () => {
+    it("gives the name and height", () => {
+      expect(message).toInclude(name);
+      expect(message).toInclude(height);
+    });
+  });
+});
 ```
 
 **Important**: You should never need to make changes to test files unless a
@@ -263,8 +262,8 @@ npm ERR! Test failed.  See above for more details.
 
 > **Note**: If you also get an error that ends with "unexpected character (after
 > ) at line 1, column 1 [parse.c:769] (Oj::ParseError)", go back to the
-> `index.js` file and remove the `console.log` we added earlier, then run `learn
-> test` again.
+> `index.js` file and remove the `console.log` we added earlier, then run
+> `learn test` again.
 
 Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
@@ -274,8 +273,8 @@ output, you'll see a summary of how the tests went:
   2 failing
 ```
 
-Great! We've already got one test passing! Now let's see how we failed the
-other two tests.
+Great! We've already got one test passing! Now let's see how we failed the other
+two tests.
 
 ```txt
   1) what-is-a-test
@@ -469,12 +468,11 @@ describe("Height", () => {
 });
 ```
 
-We can see that the word `"actual"` in this case is referring to the
-`height` variable. The error message is telling us that `height`
-**must be a number**. If you're seeing this, make sure that you have set the
-`height` variable to a **number** that's less than 40 (e.g. `39`), not a
-**string** (`"39"`). The test will interpret the value as a string due to the
-quotation marks wrapping it.
+We can see that the word `"actual"` in this case is referring to the `height`
+variable. The error message is telling us that `height` **must be a number**. If
+you're seeing this, make sure that you have set the `height` variable to a
+**number** that's less than 40 (e.g. `39`), not a **string** (`"39"`). The test
+will interpret the value as a string due to the quotation marks wrapping it.
 
 ## Optional Mocha Configuration
 
