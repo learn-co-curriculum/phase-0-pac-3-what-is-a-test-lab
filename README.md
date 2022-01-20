@@ -218,7 +218,7 @@ this:
 
 ```console
 > js-functions-lab@0.1.0 test
-> mocha --timeout 5000 --reporter 'json' > .results.json & mocha
+> mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json
 
 
   what-is-a-test
@@ -489,15 +489,13 @@ To implement this, open up the `package.json` file and find the test script. It
 should look something like this:
 
 ```json
-  "scripts": {
-    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha"
-  },
+"test": "mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json"
 ```
 
 Add the `--bail` flag to the end of the line, inside the quotes:
 
 ```json
-    "test": "mocha --timeout 5000 --reporter 'json' > .results.json & mocha --bail"
+"test": "mocha --timeout 5000 -R mocha-multi --reporter-options spec=-,json=.results.json --bail"
 ```
 
 That's it!
