@@ -29,36 +29,10 @@ the test output — and the tests themselves — can be an invaluable skill.
 The lesson is set up as an assignment (lab), so you'll first need to fork and
 clone it to your local environment.
 
-**Quick Review:**
-
-**1.** click the **Fork** icon in the upper right of this page. This will bring
-you to GitHub. If you are prompted to choose where to fork, choose your personal
-GitHub account.
-
-**2.** Once your fork is created, click the **Code** button in GitHub, make sure
-**SSH** is selected, and copy the provided git URL info.
-
-![clone-repo](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments/clone-repo.gif)
-
-Then, in your terminal:
-
-**3.** Make sure you're in `Development/code` (or wherever you're storing your
-code for the course) and clone the repo to your local machine with `git clone`
-followed by the git URL you copied.
-
-```console
-$ git clone git@github.com:<your-github-username>/phase-0-html-experiencing-html-lab.git
-```
-
-**4.** The previous command will create a folder in the location you're
-currently in containing your fork of this lab's repository. `cd` into the
-repository that you just cloned down in the terminal, then run `code .` to open
-the files in Visual Studio Code.
-
-```console
-$ cd phase-0-pac-3-what-is-a-test-lab.git
-$ code .
-```
+If you haven't already, fork and clone this lesson into your local environment.
+Navigate into its directory in the terminal, then run `code .` to open the files
+in Visual Studio Code. (If you are using a different text editor, the command
+will be different.)
 
 Open up `index.js` in your code editor. You are going to see mostly familiar
 things:
