@@ -67,7 +67,7 @@ $ node index.js
 
 The `node` command _executes_ the code in whatever file you specify (in this
 case, `index.js`). You should see `"Joe is 74 inches tall"` logged in the
-terminal.
+terminal. If you don't, make sure you saved the `index.js` file.
 
 > **Top Tip**: `console.log` is one of the debugging tools you can use as you're
 > writing your code. Logging a variable and executing the code will allow you to
