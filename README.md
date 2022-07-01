@@ -26,10 +26,10 @@ the test output — and the tests themselves — can be an invaluable skill.
 
 ## Getting Started
 
-The lesson is set up as an assignment (lab), so you'll first need to fork and
-clone it to your local environment.
+Recall that in the previous lesson, the tests were commented out. Be sure to fork
+and clone this lab into your local environment so you have the version of the test
+file that is not commented out.
 
-If you haven't already, fork and clone this lesson into your local environment.
 Navigate into its directory in the terminal, then run `code .` to open the files
 in Visual Studio Code. (If you are using a different text editor, the command
 will be different.)
