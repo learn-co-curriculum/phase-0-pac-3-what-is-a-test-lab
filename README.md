@@ -1,4 +1,4 @@
-# Testing with JavaScript Lab
+# Testing with JavaScript Lab.
 
 ## Learning Goals
 
