@@ -1,6 +1,6 @@
 # Testing with JavaScript Lab
 
-## Learning Goals.
+## Learning Goals
 
 - Learn about testing in JavaScript
 - Run JavaScript tests
