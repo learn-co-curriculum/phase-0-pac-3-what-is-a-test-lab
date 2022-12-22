@@ -170,8 +170,8 @@ them.
 ## Running Tests
 
 To run the tests, make sure you're inside the lab's directory in the terminal,
-then run `learn test`. Recall that this command first installs the lab's
-dependencies, then shows the results of running the tests.
+then run `npm install` to install the lab's dependencies, then `npm test` to run
+the tests and see the results.
 
 > What exactly do we mean by installing dependencies? Open the `package.json`
 > file and scroll down to the bottom. You'll see a list of 'DevDependencies'.
@@ -179,15 +179,13 @@ dependencies, then shows the results of running the tests.
 > existing, reusable code. They are designed to be shared, allowing many
 > developers to use the same code in their own projects. The packages you see
 > listed in `package.json` make it possible to run the lab's tests. In order to
-> use the packages, we have to install them. One of the things `learn test` does
-> for us is run `npm install`, which is the command that installs the
-> dependencies.
+> use the packages, we have to install them.
 
 The next step is learning how to read the results that the tests give you.
 
 ## Reading Results of Tests
 
-The first time you run `learn test`, you should see something that looks like
+The first time you run `npm test`, you should see something that looks like
 this:
 
 ```console
@@ -237,7 +235,7 @@ npm ERR! Test failed.  See above for more details.
 > **Note**: If you also get an error that ends with "unexpected character (after
 > ) at line 1, column 1 [parse.c:769] (Oj::ParseError)", go back to the
 > `index.js` file and remove the `console.log` we added earlier, then run
-> `learn test` again.
+> `npm test` again.
 
 Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
@@ -315,7 +313,7 @@ what the test is looking for. Make sure you understand what this is telling you
 
 This error makes sense because we have the `name` variable set equal to "Joe" in
 our `index.js` file. Let's change that line of code to set `name` equal to
-"Susan" instead. Run the tests again by typing `learn test` in the terminal's
+"Susan" instead. Run the tests again by typing `npm test` in the terminal's
 command line, and you should see that we are now passing 2 of the 3 tests!
 
 ```txt
