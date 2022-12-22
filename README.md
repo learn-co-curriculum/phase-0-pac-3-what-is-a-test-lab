@@ -477,8 +477,9 @@ That's it!
 Once you've got all the tests passing, it's time to push your completed code up
 to GitHub and submit it to Canvas using CodeGrade. We'll do a quick review of
 how to do that below, but you may want to review the full process in the
-[Complete Your First Software Engineering Assignment][completing] lesson. You'll
-be going through this process for every lab you do in this program!
+[Complete Your First Software Engineering Assignment][complete-assignment]
+lesson. You'll be going through this process for every lab you do in this
+program!
 
 [complete-assignment]: https://github.com/learn-co-curriculum/phase-0-completing-assignments-codegrade
 
