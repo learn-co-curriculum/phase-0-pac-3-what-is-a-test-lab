@@ -340,7 +340,7 @@ command line, and you should see that we are now passing 2 of the 3 tests!
 ```
 
 Woot! You passed another one. Now go ahead and try to pass the remaining test on
-your own.
+your own. 
 
 ### Common Errors
 
@@ -472,7 +472,66 @@ Add the `--bail` flag to the end of the line, inside the quotes:
 
 That's it!
 
+## Submitting Your Work to Canvas
+
+Once you've got all the tests passing, it's time to push your completed code up
+to GitHub and submit it to Canvas using CodeGrade. We'll do a quick review of
+how to do that below, but you may want to review the full process in the
+[Complete Your First Software Engineering Assignment][completing] lesson. You'll
+be going through this process for every lab you do in this program!
+
+[complete-assignment]: https://github.com/learn-co-curriculum/phase-0-completing-assignments-codegrade
+
+Let's review the process. First, you need to "stage" your changes using the `git
+add` command:
+
+```console
+$ git add index.js
+```
+
+or
+
+```console
+$ git add .
+```
+
+Recall that the `.` shortcut will stage **all** files that have changes. In this
+case there's only one so either command will work.
+
+Next, you need to "commit" your changes, which basically saves a record of the
+changes you've made. Don't forget to use the `-m` flag and include a commit
+message! Use the message shown below or choose your own:
+
+```console
+$ git commit -m "complete lab"
+```
+
+Finally, push your changes up to your GitHub account (your fork of this lab):
+
+```console
+$ git push
+```
+
+If you go back to your repo in GitHub and refresh the page, you should now see a
+new commit with your commit message.
+
+The final step is to submit your work to Canvas. Scroll to the bottom of this
+lesson page in Canvas and click the button labeled "Load Testing With JavaScript
+Lab in a new window". In the CodeGrade window that opens, click "Create
+Submission". You should then see your GitHub account listed:
+
+![CodeGrade window with GitHub account shown](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments-codegrade/codegrade-github-account-list.png)
+
+Click on that entry. You should now see a list of your repositories. Find the
+repo for this lab and click Connect. When you get the message that your repo has
+been connected, click on the embedded link, then the "AutoTest" tab to watch
+your progress. Once the tests have finished running, you should see the green
+checkmark in the "Pass" column, indicating that you've successfully completed
+the lab.
+
+![CodeGrade window showing tests have all been passed](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments-codegrade/codegrade-tests-passing.png)
+
 ## Conclusion
 
-Once you've got all your tests passing, you're ready to move on.
-Congratulations! You've solved your first JavaScript tests!
+Now that you've gotten all your tests passing and submitted your work, you're
+ready to move on. Congratulations! You've solved your first JavaScript tests!
