@@ -14,9 +14,9 @@ and clone** this lab into your local environment so you have the version of the 
 file that is not commented out. (Return to the previous lesson if you need a reminder
 of how to do this.)
 
-Navigate into its directory in the terminal, then run code . to
-open the files in Visual Studio Code. (If you are using a different text editor,
-the command will be different.) Finally, run `npm install` to install the lab's
+Navigate into its directory in the terminal, then run `code .` to open the files
+in Visual Studio Code. (If you are using a different text editor, the command
+will be different.) Finally, run `npm install` to install the lab's
 dependencies.
 
 > What exactly do we mean by installing dependencies? Open the package.json file
@@ -27,9 +27,9 @@ dependencies.
 > package.json make it possible to run the lab's tests. In order to use the
 > packages, we have to install them; npm install does that for us.
 
-If you take a look at index.js and indexTest.js, you should see the same code as
-in the previous lesson. The only difference is that the test code in
-indexTest.js is no longer commented out.
+If you take a look at `index.js` and `indexTest.js`, you should see the same
+code as in the previous lesson. The only difference is that the test code in
+`indexTest.js` is no longer commented out.
 
 **Important**: You should never need to make changes to test files unless a
 lab's instructions specifically tell you to do so.
