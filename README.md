@@ -416,8 +416,16 @@ When you use the `git clone` command to clone down a repo from GitHub, git
 automatically assigns the "origin" alias to the url you clone from, and uses
 whatever branch is specified as the "main" branch for that repo.
 
-Anytime you want to verify that you're pushing to the right repo, you can run
-the following command:
+As you work through the labs in this program, you should always:
+
+1. **fork** the lab's repo to your GitHub account, and
+2. **clone** that fork down to your local machine.
+
+As long as you always fork before you clone, it should be safe to run `git
+push`.
+
+If you want to verify that you're pushing to the right repo, you can use the
+`git remote` command and include the `-v` flag:
 
 ```console
 $ git remote -v
@@ -425,10 +433,11 @@ origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (f
 origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (push)
 ```
 
-Here you can see that the `origin` alias points to your fork of the repo, which
-means it's safe to run the shorter command, `git push`.
+Here you can see that the `origin` alias points to your fork of the repo, so
+it's safe to run the shorter command, `git push`.
 
 ## Conclusion
 
-Now that you've gotten all your tests passing and submitted your work, you're
-ready to move on. Congratulations! You've solved your first JavaScript tests!
+Now that you've gotten all your tests passing and submitted your work (and
+learned a bit more about `git push`), you're ready to move on. Congratulations!
+You've solved your first JavaScript tests!
