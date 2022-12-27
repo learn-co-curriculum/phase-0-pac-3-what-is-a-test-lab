@@ -88,9 +88,9 @@ npm ERR! Test failed.  See above for more details.
 ```
 
 > **Note**: If you also get an error that ends with "unexpected character (after
-> ) at line 1, column 1 [parse.c:769] (Oj::ParseError)", go back to the
-> `index.js` file and remove the `console.log` we added earlier, then run
-> `npm test` again.
+> ) at line 1, column 1 [parse.c:769] (Oj::ParseError)", make sure you've cloned
+> down the files for this lab, and are not running the tests on the files from
+> the previous lesson.
 
 Let's break this down a bit. If you look about a third of the way down in the
 output, you'll see a summary of how the tests went:
@@ -386,6 +386,47 @@ checkmark in the "Pass" column, indicating that you've successfully completed
 the lab.
 
 ![CodeGrade window showing tests have all been passed](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments-codegrade/codegrade-tests-passing.png)
+
+### Note about the `git push` command
+
+You may recall from the [Complete Your First Software Engineering
+Assignment][complete-assignment] lesson that a different form of the `git push`
+command was used:
+
+[complete-assignment]: https://github.com/learn-co-curriculum/phase-0-completing-assignments-codegrade
+
+```console
+$ git push <remote> <branch>
+```
+
+where `remote` is the "alias" for the repo's url on GitHub, and `branch` is the
+branch you cloned from (generally `main` for newer repos and `master` for older
+ones). For this lab, therefore, the full command would be:
+
+```console
+$ git push origin master
+```
+
+This command tells git to push the code in the `master` branch of the local repo
+to the `master` branch of the repo indicated by the `origin` alias.
+
+So why didn't you need to run that command?
+
+When you use the `git clone` command to clone down a repo from GitHub, git
+automatically assigns the "origin" alias to the url you clone from, and uses
+whatever branch is specified as the "main" branch for that repo.
+
+Anytime you want to verify that you're pushing to the right repo, you can run
+the following command:
+
+```console
+$ git remote -v
+origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (fetch)
+origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (push)
+```
+
+Here you can see that the `origin` alias points to your fork of the repo, which
+means it's safe to run the shorter command, `git push`.
 
 ## Conclusion
 
