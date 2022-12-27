@@ -400,7 +400,7 @@ $ git push <remote> <branch>
 ```
 
 where `remote` is the "alias" for the repo's url on GitHub, and `branch` is the
-branch you cloned from (generally `main` for newer repos and `master` for older
+repo's default branch (generally `main` for newer repos and `master` for older
 ones). For this lab, therefore, the full command would be:
 
 ```console
@@ -408,13 +408,13 @@ $ git push origin master
 ```
 
 This command tells git to push the code in the `master` branch of the local repo
-to the `master` branch of the repo indicated by the `origin` alias.
+to the `master` branch of the remote repo identified by the `origin` alias.
 
 So why didn't you need to run that command?
 
 When you use the `git clone` command to clone down a repo from GitHub, git
 automatically assigns the "origin" alias to the url you clone from, and uses
-whatever branch is specified as the "main" branch for that repo.
+the default branch for that repo.
 
 As you work through the labs in this program, you should always:
 
@@ -422,7 +422,7 @@ As you work through the labs in this program, you should always:
 2. **clone** that fork down to your local machine.
 
 As long as you always fork before you clone, it should be safe to run `git
-push`.
+push` without specifying the remote and branch.
 
 If you want to verify that you're pushing to the right repo, you can use the
 `git remote` command and include the `-v` flag:
