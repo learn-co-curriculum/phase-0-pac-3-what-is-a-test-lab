@@ -429,8 +429,8 @@ If you want to verify that you're pushing to the right repo, you can use the
 
 ```console
 $ git remote -v
-origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (fetch)
-origin	git@github.com:<your-github-name>/phase-0-pac-3-what-is-a-test-lab.git (push)
+origin	git@github.com:your-github-username/phase-0-pac-3-what-is-a-test-lab.git (fetch)
+origin	git@github.com:your-github-username/phase-0-pac-3-what-is-a-test-lab.git (push)
 ```
 
 Here you can see that the `origin` alias points to your fork of the repo, so
