@@ -374,14 +374,10 @@ new commit with your commit message.
 The final step is to submit your work to Canvas. Scroll to the bottom of this
 lesson page in Canvas and click the button labeled "Load Testing With JavaScript
 Lab in a new window". In the CodeGrade window that opens, click "Create
-Submission". You should then see your GitHub account listed:
-
-![CodeGrade window with GitHub account shown](https://curriculum-content.s3.amazonaws.com/phase-0/completing-assignments-codegrade/codegrade-github-account-list.png)
-
-Click on that entry. You should now see a list of your repositories. Find the
-repo for this lab and click Connect. When you get the message that your repo has
-been connected, click on the embedded link, then the "AutoTest" tab to watch
-your progress. Once the tests have finished running, you should see the green
+Submission". You should now see a list of your repositories. Find the repo for
+this lab and click Connect. When you get the message that your repo has been
+connected, click on the embedded link, then the "AutoTest" tab to watch your
+progress. Once the tests have finished running, you should see the green
 checkmark in the "Pass" column, indicating that you've successfully completed
 the lab.
 
