@@ -169,7 +169,8 @@ what the test is looking for. Make sure you understand what this is telling you
 This error makes sense because we have the `name` variable set equal to "Joe" in
 our `index.js` file. Let's change that line of code to set `name` equal to
 "Susan" instead. Run the tests again by typing `npm test` in the terminal's
-command line, and you should see that we are now passing 2 of the 3 tests!
+command line (don't forget to save the file first!), and you should see that
+we are now passing 2 of the 3 tests!
 
 ```txt
   what-is-a-test
