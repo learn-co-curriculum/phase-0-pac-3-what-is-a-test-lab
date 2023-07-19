@@ -52,7 +52,7 @@ this:
     Name
       1) returns "Susan"
     Height
-      2) is less than 40
+      2) is less than 40 and greater than 0
     Message
       ✓ gives the name and height
 
@@ -77,7 +77,7 @@ this:
 
   2) what-is-a-test
        Height
-         is less than 40:
+         is less than 40 and greater than 0:
      Error: Expected 74 to be less than 40
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
@@ -121,7 +121,7 @@ two tests.
 
   2) what-is-a-test
        Height
-         is less than 40:
+         is less than 40 and greater than 0:
      Error: Expected 74 to be less than 40
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
@@ -177,7 +177,7 @@ we are now passing 2 of the 3 tests!
     Name
       ✓ returns "Susan"
     Height
-      1) is less than 40
+      1) is less than 40 and greater than 0
     Message
       ✓ gives the name and height
 
@@ -187,7 +187,7 @@ we are now passing 2 of the 3 tests!
 
   1) what-is-a-test
        Height
-         is less than 40:
+         is less than 40 and greater than 0:
      Error: Expected 74 to be less than 40
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
@@ -276,7 +276,7 @@ On the second test, there is a chance you might see the following error:
 ```txt
 1) what-is-a-test
        Height
-         is less than 40:
+         is less than 40 and greater than 0:
      Error: The "actual" argument in expect(actual).toBeLessThan() must be a number
       at assert (node_modules/expect/lib/assert.js:29:9)
       at Expectation.toBeLessThan (node_modules/expect/lib/Expectation.js:156:28)
@@ -290,10 +290,11 @@ test in `test/indexTest.js`, we see this:
 
 ```js
 describe("Height", () => {
-  it("is less than 40", () => {
-    expect(height).toBeLessThan(40);
+    it("is less than 40 and greater than 0", () => {
+      expect(height).toBeMoreThan(0)
+      expect(height).toBeLessThan(40);
+    });
   });
-});
 ```
 
 We can see that the word `"actual"` in this case is referring to the `height`
